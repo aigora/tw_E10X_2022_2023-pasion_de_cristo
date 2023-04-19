@@ -4,7 +4,13 @@
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Gianmarco Barcelloni-Corte  
+
+Felipe Arriero Serrano  
+
+Álvaro López Acebes  
+
+Iván Yankowich Oliver  
 
 ## Objetivos del trabajo
 

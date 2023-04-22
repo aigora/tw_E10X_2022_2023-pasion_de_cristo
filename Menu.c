@@ -53,9 +53,9 @@ int main() {
             default:
             	
                 printf("Elija una de las opciones vigentes\n");
-                while(getchar() != '\n');
+               
         }
-    } while(seleccion != 4 || seleccion == 100);
+    } while(seleccion != 4 );
 
     return 0;
 }

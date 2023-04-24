@@ -13,7 +13,7 @@ void leer_fichero()
 {
 	FILE *datos_hidraulicos;
 	
-	datos_hidraulicos = fopen("C:/Users/gianm/Desktop/pan/Informatica_Trabajo/9_Datos_hidraulicos_03_2023.xlsx", "r");
+	datos_hidraulicos = fopen("9_Datos_hidraulicos_03_2023.csv", "r");
 	if (datos_hidraulicos == NULL)
 	{
 		printf("Error al abrir el fichero.\n");

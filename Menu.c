@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include <math.h>
+void leer_fichero();
 
 int main() {
     int seleccion,ayuda;
 
     do {
         printf("MENU:\n");
-        printf("1. Opcion: Calculo de medias 1\n");
+        printf("1. Opcion: Lectura del fichero .csv en la terminal 1\n");
         printf("2. Opcion: Calculo de... 2\n");
         printf("3. Opcion 3\n");
         printf("4. Salir 4\n");
@@ -18,6 +18,7 @@ int main() {
         switch(seleccion) {
             case 1:
                 printf("Usted ha elegido la opcion 1\n");
+                leer_fichero();
                 break;
             case 2:
                 printf("Usted ha elegido la opcion 2\n");
@@ -59,4 +60,51 @@ int main() {
 
     return 0;
 }
+
+ void leer_fichero()
+{
+	int i;
+	FILE *archivo;
+	
+	archivo = fopen("9_Datos_hidraulicos_03_2023.csv", "r");
+	if (archivo == NULL)
+	{
+		printf("Error al abrir el fichero.\n");
+	}
+	else 
+	{
+		printf("El fichero se ha abierto correctamente.\n");
+		
+		int LARGO_LINEA = 1024; // longitud maxima
+	
+   
+    char linea[LARGO_LINEA]; // almacenar la linea actual
+    char cajas[LARGO_LINEA]; // almacenar cada caja
+    int cantidad_cajas = 0; // contador de cajas
+
+    while (fgets(linea, LARGO_LINEA, archivo)) { 
+        cantidad_cajas = 0; 
+
+        for ( i=0 ; i < LARGO_LINEA && linea[i] != '\0'; i++) { 
+            if (linea[i] == ',') { //encontrar una coma indica la existencia de una caja
+                cajas[cantidad_cajas] = '\0'; 
+                printf("%s ", cajas); 
+                cantidad_cajas = 0;//reinicio de contador
+            }
+            else { 
+                cajas[cantidad_cajas] = linea[i]; 
+                cantidad_cajas++; // incrementamos el contador de caracteres de la caja
+            }
+        }
+
+        // imprimimos la ultima caja
+        cajas[cantidad_cajas] = '\0';
+        printf("%s\n", cajas);
+    
+	}
+    fclose(archivo); 
+    
+     }
+ }
+
 

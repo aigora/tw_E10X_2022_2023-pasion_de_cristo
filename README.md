@@ -1,6 +1,6 @@
-# [Título del trabajo]
+# [Procesamiento de Datos hidráulicos]
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+[Analisis de datos y procesamiento de los mismos a través de cálculos estadísticos.]
 
 ## Integrantes del equipo
 

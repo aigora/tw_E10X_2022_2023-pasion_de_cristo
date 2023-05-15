@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void leer_fichero();
+float media(float vector[], int tamanio);
 
 int main() 
 {
@@ -112,5 +113,18 @@ int main()
     
      }
  }
+ 
+float media(float vector[], int tamanio)
+{
+	float resultado;
+	int i=0, j=0;
+	for(i=0; i<tamanio; i++)
+	{
+		resultado=resultado+vector[i];
+	}
+	resultado=resultado/i;
+	
+	return resultado;
+}
 
 

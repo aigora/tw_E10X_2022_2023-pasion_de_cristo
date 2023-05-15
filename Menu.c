@@ -1,7 +1,9 @@
 #include <stdio.h>
 
+float cuasivarianza(float vector_3[], int tamanio_3);
 void leer_fichero();
 float media(float vector[], int tamanio);
+float varianza(float vector_2[], int tamanio_2);
 
 int main() 
 {
@@ -66,6 +68,19 @@ int main()
     return 0;
 }
 
+float cuasivarianza(float vector_3[], int tamanio_3)
+{
+	float suma_cuadrados=0, x=media(vector_3, tamanio_3), resultado;
+	int i=0;
+	for(i=0; i<tamanio_3; i++)
+	{
+	    suma_cuadrados=suma_cuadrados+(vector_3[i]-x)*(vector_3[i]-x);
+	}
+	resultado=suma_cuadrados/(tamanio_3-1);
+	
+	return resultado;
+}
+
  void leer_fichero()
 {
 	int i;
@@ -117,12 +132,25 @@ int main()
 float media(float vector[], int tamanio)
 {
 	float resultado;
-	int i=0, j=0;
+	int i=0;
 	for(i=0; i<tamanio; i++)
 	{
 		resultado=resultado+vector[i];
 	}
 	resultado=resultado/i;
+	
+	return resultado;
+}
+
+float varianza(float vector_2[], int tamanio_2)
+{
+	float suma_cuadrados=0, x=media(vector_2, tamanio_2), resultado;
+	int i=0;
+	for(i=0; i<tamanio_2; i++)
+	{
+	    suma_cuadrados=suma_cuadrados+(vector_2[i]-x)*(vector_2[i]-x);
+	}
+	resultado=suma_cuadrados/tamanio_2;
 	
 	return resultado;
 }

@@ -7,58 +7,82 @@ float varianza(float vector_2[], int tamanio_2);
 
 int main() 
 {
-    int seleccion,ayuda;
+    int seleccion,ayuda,visual,operaciones;
 
     do {
-        printf("\n\tMENU:\n");
-        printf("\t1. Opcion: Visualizacion de Datos\n");
-        printf("\t2. Opcion: Media\n");
-        printf("\t3. Opcion: Varianza\n");
-        printf("\t4. Opcion: Cuasivarianza\n");
-        printf("\t50. Salir 4\n");
+         printf("\n      *MENU PRINCIPAL*\n\n");
+        printf("\t1. Opcion: Menu de visualizacion de datos \n");
+        printf("\t2. Opcion: Menu de operaciones \n");
+        printf("\t3. Opcion 3\n");
+        printf("\t4. Salir \n");
         printf("\t100. Informacion y ayuda referente a las funciones del programa\n");
 
-        printf("     Ingrese su opcion: ");
-        scanf("%d", &seleccion);
+        printf("\n\nIngrese su opcion: ");
+        scanf(" %d", &seleccion);
 
-        switch(seleccion) 
-		{
+      switch(seleccion) {
             case 1:
-                printf("Usted ha elegido la opcion 1\n");
-                leer_fichero();
+            	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
+                printf("\n\tElija la funcion:\n");
+                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 FUNCION 3\n\t 4 FUNCION 4\n");
+                scanf ("%d", &visual);
+                switch(visual) {
+            		case 1:
+            			printf("Visualizacion: \n");
+            			leer_fichero();
+            			break;
+            		case 2:
+            			printf("Visualizacion de lineas en especifico:\n");
+            			break;
+				}
                 break;
             case 2:
-                printf("Usted ha elegido la opcion 2\n");
+                printf("\t\t\t\t\t\t\t\t\t\tEstas en MENU DE OPERACIONES\n");
+                printf("\n\tElija la:\n");
+                printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 FUNCION \n");
+                scanf ("%d", &operaciones);
+                
+				switch(operaciones) {
+            		case 1:
+            			printf("Media:\n");
+            			break;
+            		case 2:
+            			printf("Varianza:\n");
+            			break;
+            		case 3:
+            			printf("Cuasivarianza:\n");
+            			break;
+            		case 4:
+            			printf("Funcion 4:\n");
+            			break;
+				}
+               
                 break;
             case 3:
                 printf("Usted ha elegido la opcion 3\n");
                 break;
             case 4:
-                printf("Usted ha elegido la opcion 4\n");
-                break;
-            case 50:
                 printf("Saliendo del menu\n");
                 break;
             case 100:
             	
             	
-                printf("\tElija la funcion del programa sobre la que le interese aprender\n");
-                printf(" 1 Visualizacion Datos\n 2 Media\n 3 Varianza\n 4 Cuasivarianza\n");
+                printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
+                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n");
                 scanf ("%d", &ayuda);
                 
-            	switch(ayuda) 
-				{
+            	switch(ayuda) {
             		case 1:
-            			printf("\tVisualizacion de Datos: Se mostraran en pantalla todos lso datos contenidos en el fichero");
+            			printf("\tVisualizacion de Datos: Se mostraran en pantalla todos los datos contenidos en el fichero\n");
             			break;
             		case 2:
-            			printf("\tMedia: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las \n\tmismas\n\n");
+            			printf("Media: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las \n\tmismas\n\n\n");
             			break;
             		case 3:
-            			printf("\tVarianza: Medida de dispersión que representa la variabilidad de una serie de datos respecto a su media. \n\tFormalmente se calcula como la suma de los residuos al cuadrado divididos entre el total de observaciones\n");
+            			printf("Varianza: Medida de dispersi?n que representa la variabilidad de una serie de datos respecto a su media. \n\tFormalmente se calcula como la suma de los residuos al cuadrado divididos entre el total de observaciones\n");
             			break;
             		case 4:
-            			printf("\tCuasivarianza: Medida de dispersión que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el número total de observaciones menos uno.\n");
+            			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
             			break;
 				}
                 break;

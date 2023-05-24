@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 float cuasivarianza(float vector_3[], int tamanio_3);
 void leer_fichero();
 float media(float vector[], int tamanio);
 float varianza(float vector_2[], int tamanio_2);
+void extraerFila(char matriz[18][25][800], int fila, float vector[25]);
+void imprimirVector(float vector[25], int longitud);
 
 int main() 
 {
@@ -24,7 +27,7 @@ int main()
             case 1:
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
-                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 FUNCION 3\n\t 4 FUNCION 4\n");
+                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 FUNCION 4\n");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:
@@ -33,6 +36,181 @@ int main()
             			break;
             		case 2:
             			printf("Visualizacion de lineas en especifico:\n");
+            			break;
+            		case 3:
+            			printf("Creacion de una matriz y seleccion de vector:\n");
+            			
+    int numeroColumnas = 25;
+    int numeroFilas = 18;
+    char matrizDatos[18][25][800];
+    char bufferFila[1024];
+    FILE *archivo;
+    archivo = fopen("Def.csv", "r");
+    char elemento[80] = "";
+    int letra = 0;
+    int indiceLetra = 0;
+    int filaOriginal = 0;
+    int columnaActual = 0;
+    int filaReal = 0;
+    int Decimal = 0;
+    numeroFilas += 4;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    /////////////////////////////////////////////////////////////////////////////////////////////7
+    
+    for (filaOriginal = 0; filaOriginal < numeroFilas; filaOriginal++) {
+        columnaActual = 0;
+        fgets(bufferFila, 1024, archivo);
+        printf("%s\n", bufferFila);
+        indiceLetra = 0;
+        letra = 0;
+        
+        for (letra = 0; bufferFila[letra] != '\n'; letra++) {
+            if (bufferFila[letra] == '"') {
+                Decimal = !Decimal;
+                continue;
+            }
+            
+            if (bufferFila[letra] == ',') {
+                if (!Decimal) {
+                    if (filaOriginal >= 4) {
+                        filaReal = filaOriginal - 4;
+                        
+                        for (i = 0; elemento[i] != '\0'; i++) {
+                            matrizDatos[filaReal][columnaActual][i] = elemento[i];
+                        }
+                        printf("%s", matrizDatos[filaReal][columnaActual]);
+                        printf(" %i %i \nexito\n", filaReal, columnaActual);
+                        columnaActual++;
+                    }
+                    indiceLetra = 0;
+                } else {
+                    elemento[indiceLetra] = '.';
+                    indiceLetra++;
+                    printf("%s\n", elemento);
+                    continue;
+                }
+                
+                int j = 0;
+                for (j = 0; elemento[j] != '\0'; j++) {
+                    elemento[j] = '\0';
+                }
+            }
+            
+            if (bufferFila[letra] != ',') {
+                if (columnaActual == 0) {
+                    char letraCorregida;
+                    switch (bufferFila[letra]) {
+                        case 'á':
+                            letraCorregida = 'a';
+                            break;
+                        case 'é':
+                            letraCorregida = 'e';
+                            break;
+                        case 'í':
+                            letraCorregida = 'i';
+                            break;
+                        case 'ó':
+                            letraCorregida = 'o';
+                            break;
+                        case 'ú':
+                            letraCorregida = 'u';
+                            break;
+                        case 'Á':
+                            letraCorregida = 'A';
+                            break;
+                        case 'É':
+                            letraCorregida = 'E';
+                            break;
+                        case 'Í':
+                            letraCorregida = 'I';
+                            break;
+                        case 'Ó':
+                            letraCorregida = 'O';
+                            break;
+                        case 'Ú':
+                            letraCorregida = 'U';
+                            break;
+                        case 'ü':
+                            letraCorregida = 'u';
+                            break;
+                        case 'Ü':
+                            letraCorregida = 'U';
+                            break;
+                        default:
+                            letraCorregida = bufferFila[letra];
+                            break;
+                    }
+                    elemento[indiceLetra] = letraCorregida;
+                                    } else {
+                    elemento[indiceLetra] = bufferFila[letra];
+                }
+                indiceLetra++;
+                printf("%s\n", elemento);
+            }
+        }
+        
+        elemento[indiceLetra - 1] = '\0';
+        
+        if (filaOriginal >= 4) {
+            for (k = 0; elemento[k] != '\0'; k++) {
+                matrizDatos[filaReal][columnaActual][k] = elemento[k];
+                elemento[k] = '\0';
+            }
+            printf("%s", matrizDatos[filaReal][columnaActual]);
+            printf(" %i %i \n", filaReal, columnaActual);
+            printf("exito\n\n");
+        }
+    }
+    
+    
+    for (i = 0; i < numeroFilas - 4; i++) {
+        for (j = 0; j < numeroColumnas; j++) {
+            printf("%s ", matrizDatos[i][j]);
+            printf("%i %i\n", i, j);
+        }
+        printf("\n");
+    }
+    
+      printf("\n\nImpresion de los datos limpios sin ningun simbolo ni error\n\n");
+    for (i = 0; i < numeroFilas - 4; i++) {
+        for (j = 0; j <numeroColumnas ; j++) {
+            
+            char *p = matrizDatos[i][j];
+            while (*p != '\0') {
+                if (*p < 32 || *p > 126) {
+                    *p = ' '; // Reemplazar con un espacio en blanco
+                }
+                p++;
+            }
+            
+            // Imprimir los datos limpios
+            
+            printf("%s ", matrizDatos[i][j]);
+            printf("%i %i\n", i, j);
+        }
+        printf("\n");
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////
+
+     matrizDatos[18][25][800];  // Matriz de datos
+    
+    int fila;  
+    printf("\n Elige una fila de la matriz para crear un vector:\n");
+    scanf("%i",&fila);
+    float vector[25];  //Almacena la fila
+    
+    extraerFila(matrizDatos, fila, vector);
+    
+    printf("Fila %d:\n", fila);// el vector cuenta con un pequeño error decimal
+    imprimirVector(vector, 25);
+    
+    /////////////////////////////////////////////////////////////////////////////////
+    
+    fclose(archivo);
+    
             			break;
 				}
                 break;
@@ -114,7 +292,7 @@ float cuasivarianza(float vector_3[], int tamanio_3)
 	int i;
 	FILE *archivo;
 	
-	archivo = fopen("9_Datos_hidraulicos_03_2023.csv", "r");
+	archivo = fopen("Def.csv", "r");
 	if (archivo == NULL)
 	{
 		printf("Error al abrir el fichero.\n");
@@ -183,4 +361,19 @@ float varianza(float vector_2[], int tamanio_2)
 	return resultado;
 }
 
+void extraerFila(char matriz[18][25][800], int fila, float vector[25]) {
+    int columna;
+    for (columna = 0; columna < 25; columna++) {
+        float valor = atof(matriz[fila][columna]); // paso a float.
+        vector[columna] = valor;
+    }
+}
+
+void imprimirVector(float vector[25], int longitud) {
+    int i;
+    for (i = 0; i < longitud; i++) {
+        printf("%f ", vector[i]);
+    }
+    printf("\n");
+}
 

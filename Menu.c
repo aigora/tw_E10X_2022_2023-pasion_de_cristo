@@ -7,6 +7,7 @@ float media(float vector[], int tamanio);
 float varianza(float vector_2[], int tamanio_2);
 void extraerFila(char matriz[18][25][800], int fila, float vector[25]);
 void imprimirVector(float vector[25], int longitud);
+void leerLineaCSV( char *nombreArchivo, int nLinea);
 
 int main() 
 {
@@ -36,6 +37,10 @@ int main()
             			break;
             		case 2:
             			printf("Visualizacion de lineas en especifico:\n");
+            			printf ("Elija el numero de linea que quiere leer del archivo. ( solo mostrara por pantalla esa linea del .csv)\n\n");
+						int queLinea;
+						scanf ("%i",&queLinea);
+    					leerLineaCSV("archivo.csv", queLinea);
             			break;
             		case 3:
             			printf("Creacion de una matriz y seleccion de vector:\n");
@@ -377,3 +382,22 @@ void imprimirVector(float vector[25], int longitud) {
     printf("\n");
 }
 
+void leerLineaCSV( char *nombreArchivo, int nLinea) {
+    FILE *archivo = fopen("Def.csv", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el fichero.\n");
+        return;
+    }
+
+    char linea[1024];
+    int cLineas = 1;
+    while (fgets(linea, sizeof(linea), archivo) != NULL) {
+        if (cLineas == nLinea) {
+            printf("\nLinea %i:\n %s", nLinea, linea);
+            break;
+        }
+        cLineas++;
+    }
+
+    fclose(archivo);
+}

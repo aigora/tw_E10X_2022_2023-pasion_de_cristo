@@ -8,7 +8,9 @@ float varianza(float vector_2[], int tamanio_2);
 void extraerFila(char matriz[18][25][800], int fila, float vector[25]);
 void imprimirVector(float vector[25], int longitud);
 void leerLineaCSV( char *nombreArchivo, int nLinea);
-void MatrizArchivo();
+void MatrizArchivo(float vector[25]);
+float encontrarMaximo(float vector[], int longitud);
+float encontrarMinimo(float vector[], int longitud);
 
 int main() 
 {
@@ -29,7 +31,7 @@ int main()
             case 1:
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
-                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 FUNCION 4\n");
+                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 Maximo y minimo del vector escogido de la matriz 4\n");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:
@@ -45,7 +47,20 @@ int main()
             			break;
             		case 3:
             			printf("Creacion de una matriz y seleccion de vector:\n");
-            			MatrizArchivo();
+            			float vector[25];
+    					MatrizArchivo( vector);
+    					break;
+    				case 4:
+            			printf("Maximo y minimo del vector escogido de la matriz:\n");
+            			 vector[25];
+    					MatrizArchivo( vector);
+     					int longitud = sizeof(vector) / sizeof(vector[0]);
+    
+    					float maximo = encontrarMaximo(vector, longitud);
+						printf("El maximo es: %.2lf\n", maximo);
+						
+    					float minimo = encontrarMinimo(vector, longitud);
+						 printf("El minimo es: %.2lf\n", minimo);
             			break;
 				}
                 break;
@@ -109,7 +124,7 @@ int main()
     return 0;
 }
 
- void MatrizArchivo() {
+ void MatrizArchivo(float vector[25]) {
 
    int numeroColumnas = 25;
     int numeroFilas = 18;
@@ -271,7 +286,7 @@ int main()
     int fila;  
     printf("\n Elige una fila de la matriz para crear un vector:\n");
     scanf("%i",&fila);
-    float vector[25];  //Almacena la fila
+     vector[25];  //Almacena la fila
     
     extraerFila(matrizDatos, fila, vector);
     
@@ -406,4 +421,30 @@ void leerLineaCSV( char *nombreArchivo, int nLinea) {
     }
 
     fclose(archivo);
+}
+
+float encontrarMaximo(float vector[], int longitud) {
+    float maximo = vector[0];  // Suponemos que el primer elemento es el máximo inicialmente
+    
+    int i;
+    for ( i = 1; i < longitud; i++) {
+        if (vector[i] > maximo) {
+            maximo = vector[i];  // Actualizamos el máximo si encontramos un valor mayor
+        }
+    }
+    
+    return maximo;
+}
+
+float encontrarMinimo(float vector[], int longitud) {
+    float minimo = vector[0];  // Suponemos que el primer elemento es el mínimo inicialmente
+    int i;
+    
+      for (i = 1; i < longitud; i++) {
+        if (vector[i] != 0 && (vector[i] < minimo || minimo == 0)) {
+            minimo = vector[i];  // Actualizamos el mínimo si encontramos un valor menor y no es cero
+        }
+    }
+    
+    return minimo;
 }

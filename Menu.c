@@ -9,6 +9,7 @@ void extraerFila(char matriz[18][25][800], int fila, float vector[25]);
 void imprimirVector(float vector[25], int longitud);
 void leerLineaCSV( char *nombreArchivo, int nLinea);
 void MatrizArchivo(float vector[25]);
+void MatrizArchivoV();
 float encontrarMaximo(float vector[], int longitud);
 float encontrarMinimo(float vector[], int longitud);
 
@@ -33,7 +34,7 @@ int main()
             case 1:
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
-                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 Maximo y minimo del vector escogido de la matriz 4\n");
+                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 Maximo y minimo del vector escogido de la matriz 4\n\t 5 Generacion de vectores completa por fila de matriz 5 \n\n");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:
@@ -61,6 +62,10 @@ int main()
     					float minimo = encontrarMinimo(vector, longitud);
 						printf("El minimo es: %.2lf\n", minimo);
             			break;
+            		case 5:
+            			printf("Generacion de vectores completa por fila de matriz:\n");
+    					MatrizArchivoV( vector);
+    					break;
 				}
                 break;
             case 2:
@@ -458,4 +463,165 @@ float encontrarMinimo(float vector[], int longitud) {
     }
     
     return minimo;
+}
+
+
+void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y el vector individual pero con esta conseguimos una impresion de todos los vectores
+    int numeroColumnas = 25;
+    int numeroFilas = 18;
+    char matrizDatos[18][25][800];
+    char bufferFila[1024];
+    FILE *archivo;
+    archivo = fopen("Def.csv", "r");
+    char elemento[80] = "";
+    int letra = 0;
+    int indiceLetra = 0;
+    int filaOriginal = 0;
+    int columnaActual = 0;
+    int filaReal = 0;
+    int Decimal = 0;
+    numeroFilas += 4;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    
+    for (filaOriginal = 0; filaOriginal < numeroFilas; filaOriginal++) {
+        columnaActual = 0;
+        fgets(bufferFila, 1024, archivo);
+        //printf("%s\n", bufferFila);
+        indiceLetra = 0;
+        letra = 0;
+        
+        for (letra = 0; bufferFila[letra] != '\n'; letra++) {
+            if (bufferFila[letra] == '"') {
+                Decimal = !Decimal;
+                continue;
+            }
+            
+            if (bufferFila[letra] == ',') {
+                if (!Decimal) {
+                    if (filaOriginal >= 4) {
+                        filaReal = filaOriginal - 4;
+                        
+                        for (i = 0; elemento[i] != '\0'; i++) {
+                            matrizDatos[filaReal][columnaActual][i] = elemento[i];
+                        }
+                        //printf("%s", matrizDatos[filaReal][columnaActual]);
+                       // printf(" %i %i \nexito\n", filaReal, columnaActual);
+                        columnaActual++;
+                    }
+                    indiceLetra = 0;
+                } else {
+                    elemento[indiceLetra] = '.';
+                    indiceLetra++;
+                   // printf("%s\n", elemento);
+                    continue;
+                }
+                
+                int j = 0;
+                for (j = 0; elemento[j] != '\0'; j++) {
+                    elemento[j] = '\0';
+                }
+            }
+            
+            if (bufferFila[letra] != ',') {
+                if (columnaActual == 0) {
+                    char letraCorregida;
+                    switch (bufferFila[letra]) {
+                        case 'á':
+                            letraCorregida = 'a';
+                            break;
+                        case 'é':
+                            letraCorregida = 'e';
+                            break;
+                        case 'í':
+                            letraCorregida = 'i';
+                            break;
+                        case 'ó':
+                            letraCorregida = 'o';
+                            break;
+                        case 'ú':
+                            letraCorregida = 'u';
+                            break;
+                        case 'Á':
+                            letraCorregida = 'A';
+                            break;
+                        case 'É':
+                            letraCorregida = 'E';
+                            break;
+                        case 'Í':
+                            letraCorregida = 'I';
+                            break;
+                        case 'Ó':
+                            letraCorregida = 'O';
+                            break;
+                        case 'Ú':
+                            letraCorregida = 'U';
+                            break;
+                        case 'ü':
+                            letraCorregida = 'u';
+                            break;
+                        case 'Ü':
+                            letraCorregida = 'U';
+                            break;
+                        default:
+                            letraCorregida = bufferFila[letra];
+                            break;
+                    }
+                    elemento[indiceLetra] = letraCorregida;
+                                    } else {
+                    elemento[indiceLetra] = bufferFila[letra];
+                }
+                indiceLetra++;
+                //printf("%s\n", elemento);
+            }
+        }
+        
+        elemento[indiceLetra - 1] = '\0';
+        
+        if (filaOriginal >= 4) {
+            for (k = 0; elemento[k] != '\0'; k++) {
+                matrizDatos[filaReal][columnaActual][k] = elemento[k];
+                elemento[k] = '\0';
+            }
+           // printf("%s", matrizDatos[filaReal][columnaActual]);
+            //printf(" %i %i \n", filaReal, columnaActual);
+            //printf("exito\n\n");
+        }
+    }
+    
+    
+    for (i = 0; i < numeroFilas - 4; i++) {
+        for (j = 0; j < numeroColumnas; j++) {
+            //printf("%s ", matrizDatos[i][j]);
+            //printf("%i %i\n", i, j);
+        }
+        //printf("\n");
+    }
+    
+     printf("\n\nImpresión de los datos limpios sin ningún símbolo ni error\n\n");
+    for (i = 0; i < numeroFilas - 4; i++) {
+        for (j = 0; j < numeroColumnas; j++) {
+            char *p = matrizDatos[i][j];
+            while (*p != '\0') {
+                if (*p < 32 || *p > 126) {
+                    *p = ' '; // Reemplazar con un espacio en blanco
+                }
+                p++;
+            }
+            printf("%s ", matrizDatos[i][j]);
+            printf("%i %i\n", i, j);
+        }
+        printf("\n");
+    }
+
+    // Imprimir vectores por cada fila
+    printf("\nImpresión de los vectores:\n");
+    for (i = 0; i < numeroFilas - 4; i++) {
+        float vector[25];
+        extraerFila(matrizDatos, i, vector);
+        printf("Fila %d:\n", i);
+        imprimirVector(vector, 25);
+    }
+    fclose(archivo);
 }

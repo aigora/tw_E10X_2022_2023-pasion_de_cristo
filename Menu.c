@@ -8,6 +8,7 @@ float varianza(float vector_2[], int tamanio_2);
 void extraerFila(char matriz[18][25][800], int fila, float vector[25]);
 void imprimirVector(float vector[25], int longitud);
 void leerLineaCSV( char *nombreArchivo, int nLinea);
+void MatrizArchivo();
 
 int main() 
 {
@@ -44,8 +45,73 @@ int main()
             			break;
             		case 3:
             			printf("Creacion de una matriz y seleccion de vector:\n");
-            			
-    int numeroColumnas = 25;
+            			MatrizArchivo();
+            			break;
+				}
+                break;
+            case 2:
+                printf("\t\t\t\t\t\t\t\t\t\tEstas en MENU DE OPERACIONES\n");
+                printf("\n\tElija la:\n");
+                printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 FUNCION \n");
+                scanf ("%d", &operaciones);
+                
+				switch(operaciones) {
+            		case 1:
+            			printf("Media:\n");
+            			break;
+            		case 2:
+            			printf("Varianza:\n");
+            			break;
+            		case 3:
+            			printf("Cuasivarianza:\n");
+            			break;
+            		case 4:
+            			printf("Funcion 4:\n");
+            			break;
+				}
+               
+                break;
+            case 3:
+                printf("Usted ha elegido la opcion 3\n");
+                break;
+            case 4:
+                printf("Saliendo del menu\n");
+                break;
+            case 100:
+            	
+            	
+                printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
+                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n");
+                scanf ("%d", &ayuda);
+                
+            	switch(ayuda) {
+            		case 1:
+            			printf("\tVisualizacion de Datos: Se mostraran en pantalla todos los datos contenidos en el fichero\n");
+            			break;
+            		case 2:
+            			printf("Media: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las \n\tmismas\n\n\n");
+            			break;
+            		case 3:
+            			printf("Varianza: Medida de dispersi?n que representa la variabilidad de una serie de datos respecto a su media. \n\tFormalmente se calcula como la suma de los residuos al cuadrado divididos entre el total de observaciones\n");
+            			break;
+            		case 4:
+            			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
+            			break;
+				}
+                break;
+            default:
+            	
+                printf("Elija una de las opciones vigentes\n");
+               
+        }
+    } while(seleccion != 4 );
+
+    return 0;
+}
+
+ void MatrizArchivo() {
+
+   int numeroColumnas = 25;
     int numeroFilas = 18;
     char matrizDatos[18][25][800];
     char bufferFila[1024];
@@ -209,75 +275,15 @@ int main()
     
     extraerFila(matrizDatos, fila, vector);
     
-    printf("Fila %d:\n", fila);// el vector cuenta con un pequeño error decimal
-    imprimirVector(vector, 25);
+    printf("Fila %d:\n", fila);
+    imprimirVector(vector, 25); //los decimales cuentan con un leve error
+    
+    
     
     /////////////////////////////////////////////////////////////////////////////////
     
-    fclose(archivo);
-    
-            			break;
-				}
-                break;
-            case 2:
-                printf("\t\t\t\t\t\t\t\t\t\tEstas en MENU DE OPERACIONES\n");
-                printf("\n\tElija la:\n");
-                printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 FUNCION \n");
-                scanf ("%d", &operaciones);
-                
-				switch(operaciones) {
-            		case 1:
-            			printf("Media:\n");
-            			break;
-            		case 2:
-            			printf("Varianza:\n");
-            			break;
-            		case 3:
-            			printf("Cuasivarianza:\n");
-            			break;
-            		case 4:
-            			printf("Funcion 4:\n");
-            			break;
-				}
-               
-                break;
-            case 3:
-                printf("Usted ha elegido la opcion 3\n");
-                break;
-            case 4:
-                printf("Saliendo del menu\n");
-                break;
-            case 100:
-            	
-            	
-                printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
-                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n");
-                scanf ("%d", &ayuda);
-                
-            	switch(ayuda) {
-            		case 1:
-            			printf("\tVisualizacion de Datos: Se mostraran en pantalla todos los datos contenidos en el fichero\n");
-            			break;
-            		case 2:
-            			printf("Media: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las \n\tmismas\n\n\n");
-            			break;
-            		case 3:
-            			printf("Varianza: Medida de dispersi?n que representa la variabilidad de una serie de datos respecto a su media. \n\tFormalmente se calcula como la suma de los residuos al cuadrado divididos entre el total de observaciones\n");
-            			break;
-            		case 4:
-            			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
-            			break;
-				}
-                break;
-            default:
-            	
-                printf("Elija una de las opciones vigentes\n");
-               
-        }
-    } while(seleccion != 4 );
+    fclose(archivo);}
 
-    return 0;
-}
 
 float cuasivarianza(float vector_3[], int tamanio_3)
 {

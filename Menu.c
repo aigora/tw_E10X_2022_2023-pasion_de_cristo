@@ -15,6 +15,8 @@ float encontrarMinimo(float vector[], int longitud);
 int main() 
 {
     int seleccion,ayuda,visual,operaciones;
+    float vector[25];
+    int longitud = sizeof(vector) / sizeof(vector[0]);
 
     do {
          printf("\n      *MENU PRINCIPAL*\n\n");
@@ -47,20 +49,17 @@ int main()
             			break;
             		case 3:
             			printf("Creacion de una matriz y seleccion de vector:\n");
-            			float vector[25];
     					MatrizArchivo( vector);
     					break;
     				case 4:
             			printf("Maximo y minimo del vector escogido de la matriz:\n");
-            			 vector[25];
     					MatrizArchivo( vector);
-     					int longitud = sizeof(vector) / sizeof(vector[0]);
     
     					float maximo = encontrarMaximo(vector, longitud);
 						printf("El maximo es: %.2lf\n", maximo);
 						
     					float minimo = encontrarMinimo(vector, longitud);
-						 printf("El minimo es: %.2lf\n", minimo);
+						printf("El minimo es: %.2lf\n", minimo);
             			break;
 				}
                 break;
@@ -73,12 +72,24 @@ int main()
 				switch(operaciones) {
             		case 1:
             			printf("Media:\n");
-            			break;
+            			MatrizArchivo(vector);
+            			
+                        float med = media(vector, longitud);
+						printf("La media es: %f\n", med);
+						break;
             		case 2:
             			printf("Varianza:\n");
+            			MatrizArchivo(vector);
+            			
+            			float var = varianza(vector, longitud);
+            			printf("La varianza es: %f\n", var);
             			break;
             		case 3:
             			printf("Cuasivarianza:\n");
+            			MatrizArchivo(vector);
+            			
+            			float cuasi = cuasivarianza(vector, longitud);
+            			printf("La cuasivarianza es: %f", cuasi);
             			break;
             		case 4:
             			printf("Funcion 4:\n");
@@ -148,7 +159,7 @@ int main()
     for (filaOriginal = 0; filaOriginal < numeroFilas; filaOriginal++) {
         columnaActual = 0;
         fgets(bufferFila, 1024, archivo);
-        printf("%s\n", bufferFila);
+        //printf("%s\n", bufferFila);
         indiceLetra = 0;
         letra = 0;
         
@@ -166,15 +177,15 @@ int main()
                         for (i = 0; elemento[i] != '\0'; i++) {
                             matrizDatos[filaReal][columnaActual][i] = elemento[i];
                         }
-                        printf("%s", matrizDatos[filaReal][columnaActual]);
-                        printf(" %i %i \nexito\n", filaReal, columnaActual);
+                        //printf("%s", matrizDatos[filaReal][columnaActual]);
+                       // printf(" %i %i \nexito\n", filaReal, columnaActual);
                         columnaActual++;
                     }
                     indiceLetra = 0;
                 } else {
                     elemento[indiceLetra] = '.';
                     indiceLetra++;
-                    printf("%s\n", elemento);
+                   // printf("%s\n", elemento);
                     continue;
                 }
                 
@@ -233,7 +244,7 @@ int main()
                     elemento[indiceLetra] = bufferFila[letra];
                 }
                 indiceLetra++;
-                printf("%s\n", elemento);
+                //printf("%s\n", elemento);
             }
         }
         
@@ -244,22 +255,22 @@ int main()
                 matrizDatos[filaReal][columnaActual][k] = elemento[k];
                 elemento[k] = '\0';
             }
-            printf("%s", matrizDatos[filaReal][columnaActual]);
-            printf(" %i %i \n", filaReal, columnaActual);
-            printf("exito\n\n");
+           // printf("%s", matrizDatos[filaReal][columnaActual]);
+            //printf(" %i %i \n", filaReal, columnaActual);
+            //printf("exito\n\n");
         }
     }
     
     
     for (i = 0; i < numeroFilas - 4; i++) {
         for (j = 0; j < numeroColumnas; j++) {
-            printf("%s ", matrizDatos[i][j]);
-            printf("%i %i\n", i, j);
+            //printf("%s ", matrizDatos[i][j]);
+            //printf("%i %i\n", i, j);
         }
-        printf("\n");
+        //printf("\n");
     }
     
-      printf("\n\nImpresion de los datos limpios sin ningun simbolo ni error\n\n");
+      //printf("\n\nImpresion de los datos limpios sin ningun simbolo ni error\n\n");
     for (i = 0; i < numeroFilas - 4; i++) {
         for (j = 0; j <numeroColumnas ; j++) {
             
@@ -308,7 +319,7 @@ float cuasivarianza(float vector_3[], int tamanio_3)
 	{
 	    suma_cuadrados=suma_cuadrados+(vector_3[i]-x)*(vector_3[i]-x);
 	}
-	resultado=suma_cuadrados/(tamanio_3-1);
+	resultado=suma_cuadrados/(tamanio_3-2);
 	
 	return resultado;
 }
@@ -369,7 +380,7 @@ float media(float vector[], int tamanio)
 	{
 		resultado=resultado+vector[i];
 	}
-	resultado=resultado/i;
+	resultado=resultado/(i-1);
 	
 	return resultado;
 }
@@ -382,7 +393,7 @@ float varianza(float vector_2[], int tamanio_2)
 	{
 	    suma_cuadrados=suma_cuadrados+(vector_2[i]-x)*(vector_2[i]-x);
 	}
-	resultado=suma_cuadrados/tamanio_2;
+	resultado=suma_cuadrados/(tamanio_2-1);
 	
 	return resultado;
 }
@@ -397,7 +408,7 @@ void extraerFila(char matriz[18][25][800], int fila, float vector[25]) {
 
 void imprimirVector(float vector[25], int longitud) {
     int i;
-    for (i = 0; i < longitud; i++) {
+    for (i = 1; i < longitud; i++) {
         printf("%f ", vector[i]);
     }
     printf("\n");

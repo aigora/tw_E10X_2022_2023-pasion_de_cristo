@@ -12,7 +12,11 @@ void MatrizArchivo(float vector[25]);
 void MatrizArchivoV();
 float encontrarMaximo(float vector[], int longitud);
 float encontrarMinimo(float vector[], int longitud);
+<<<<<<< Updated upstream
 int Validacion(int min, int max);
+=======
+void ordenar_mayor_a_menor(float vector[], int longitud);
+>>>>>>> Stashed changes
 
 int main() 
 {
@@ -34,7 +38,7 @@ int main()
             case 1:
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
-                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 Maximo y minimo del vector escogido de la matriz 4\n\t 5 Generacion de vectores completa por fila de matriz 5 \n\n");
+                printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico 2\n\t 3 Creacion de una matriz y seleccion de vector 3\n\t 4 Maximo y minimo del vector escogido de la matriz 4\n\t 5 Generacion de vectores completa por fila de matriz 5 \n\t 6 ordenar un vector escogido de mayor a menor");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:
@@ -66,6 +70,17 @@ int main()
             			printf("Generacion de vectores completa por fila de matriz:\n");
     					MatrizArchivoV( vector);
     					break;
+    				case 6:
+    					printf("ordenar un vector escogido de mayor a menor\n");
+    					MatrizArchivo( vector);
+    					
+    					ordenar_mayor_a_menor(vector, 25);
+    					printf("vector ordenado de mayor a menor:\n");
+    					imprimirVector(vector, 25);
+    					break;
+            		default:
+                        printf("Elija una de las opciones vigentes\n");
+                        break;
 				}
                 break;
             case 2:
@@ -99,6 +114,9 @@ int main()
             		case 4:
             			printf("Funcion 4:\n");
             			break;
+            		default:
+                        printf("Elija una de las opciones vigentes\n");
+                        break;
 				}
                
                 break;
@@ -120,14 +138,17 @@ int main()
             			printf("\tVisualizacion de Datos: Se mostraran en pantalla todos los datos contenidos en el fichero\n");
             			break;
             		case 2:
-            			printf("Media: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las \n\tmismas\n\n\n");
+            			printf("Media: La media es el calculo hecho a partir de la division entre el numero de variables de la suma de las mismas\n\n\n");
             			break;
             		case 3:
             			printf("Varianza: Medida de dispersi?n que representa la variabilidad de una serie de datos respecto a su media. \n\tFormalmente se calcula como la suma de los residuos al cuadrado divididos entre el total de observaciones\n");
             			break;
             		case 4:
-            			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
+            			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es igual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
             			break;
+            		default:
+                        printf("Elija una de las opciones vigentes\n");
+                        break; 
 				}
                 break;
             default:
@@ -465,6 +486,21 @@ float encontrarMinimo(float vector[], int longitud) {
     return minimo;
 }
 
+void ordenar_mayor_a_menor(float vector[], int longitud) 
+{
+    int i, j;
+    float temp;
+
+    for (i = 0; i < longitud - 1; i++) {
+        for (j = 0; j < longitud - i - 1; j++) {
+            if (vector[j] < vector[j + 1]) {
+                temp = vector[j];
+                vector[j] = vector[j + 1];
+                vector[j + 1] = temp;
+            }
+        }
+    }
+}
 
 void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y el vector individual pero con esta conseguimos una impresion de todos los vectores
     int numeroColumnas = 25;
@@ -626,6 +662,7 @@ void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y 
     fclose(archivo);
 }
 
+<<<<<<< Updated upstream
 int Validacion(int min, int max) {
     int opcion;
     printf("\nIntroduzca una opcion: ");
@@ -636,3 +673,5 @@ int Validacion(int min, int max) {
     }
     return opcion;
 }
+=======
+>>>>>>> Stashed changes

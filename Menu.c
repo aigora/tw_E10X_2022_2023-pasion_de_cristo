@@ -12,6 +12,7 @@ void MatrizArchivo(float vector[25]);
 void MatrizArchivoV();
 float encontrarMaximo(float vector[], int longitud);
 float encontrarMinimo(float vector[], int longitud);
+int Validacion(int min, int max);
 
 int main() 
 {
@@ -25,10 +26,9 @@ int main()
         printf("\t2. Opcion: Menu de operaciones \n");
         printf("\t3. Opcion 3\n");
         printf("\t4. Salir \n");
-        printf("\t100. Informacion y ayuda referente a las funciones del programa\n");
+        printf("\t5. Informacion y ayuda referente a las funciones del programa\n");
 
-        printf("\n\nIngrese su opcion: ");
-        scanf(" %d", &seleccion);
+        seleccion = Validacion(1, 5);
 
       switch(seleccion) {
             case 1:
@@ -108,7 +108,7 @@ int main()
             case 4:
                 printf("Saliendo del menu\n");
                 break;
-            case 100:
+            case 5:
             	
             	
                 printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
@@ -624,4 +624,15 @@ void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y 
         imprimirVector(vector, 25);
     }
     fclose(archivo);
+}
+
+int Validacion(int min, int max) {
+    int opcion;
+    printf("\nIntroduzca una opcion: ");
+    scanf("%d", &opcion);
+    while (opcion < min || opcion > max) {
+        printf("Opción inválida. Introduzca una opción válida: ");
+        scanf("%d", &opcion);
+    }
+    return opcion;
 }

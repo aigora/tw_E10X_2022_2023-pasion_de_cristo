@@ -1,6 +1,6 @@
-# [Procesamiento de Datos hidráulicos]
+# [Procesamiento de la Generación Mensual]
 
-[Analisis de datos y procesamiento de los mismos a través de cálculos estadísticos.]
+[Analisis de datos y procesamiento a través de cálculos estadísticos.]
 
 ## Integrantes del equipo
 
@@ -14,4 +14,4 @@ Iván Yankowich Oliver
 
 ## Objetivos del trabajo
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
+[Se busca la simplificacion de los datos de generacion mensual y se hace uso de ellos a traves de calculos estadisticos y su visualizacion dependiente de matrices y vectores.]

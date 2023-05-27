@@ -112,7 +112,7 @@ int main()
             	
             	
                 printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
-                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n");
+                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n\t 5 Visualizacion de lineas en especifico \n\t 6 Creacion de una matriz y seleccion de vector \n\t 7 Maximo y minimo \n\t 8 Generacion de vectores completa por fila de matriz\n");
                 scanf ("%d", &ayuda);
                 
             	switch(ayuda) {
@@ -128,6 +128,18 @@ int main()
             		case 4:
             			printf("Cuasivarianza: Medida de dispersi?n que indica la variabilidad de una muestra.En concreto, la cuasivarianza es \n\tigual a la suma de los cuadrados de las desviaciones partido por el n?mero total de observaciones menos uno.\n");
             			break;
+            		case 5:
+            			printf("Visualizacion de lineas en especifico: Permite la selección de una linea del archivo csv para imprimir sus datos en la terminal\n");
+            			break;	
+            		case 6:
+            			printf("Creacion de una matriz y seleccion de vector: Se imprimira una matriz de caracteres formada con los datos del archivo y permitirá crear un vector a partir de la matriz a seleccion del usuario (de datos float) \n");
+            			break;	
+            		case 7:
+            			printf("Maximo y minimo: El valor mas grande y el valor mas pequeno (numerico) aplicado dentro de un vector \n");
+            			break;	
+            		case 8:
+            			printf("Generacion de vectores completa por fila de matriz: Funcion encargada de generar un vector por cada fila de la matriz dando paso a una vectorizacion completa de la matriz.\n");
+            			break;	
 				}
                 break;
             default:

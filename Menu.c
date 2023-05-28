@@ -53,7 +53,7 @@ int main()
         printf("\t3. Salir \n");
         printf("\t4. Informacion y ayuda referente a las funciones del programa\n");
 
-        seleccion = Validacion(1, 5);
+        seleccion = Validacion(1, 4);
 
       switch(seleccion) {
             case 1:
@@ -89,7 +89,7 @@ int main()
                 break;
             case 2:
                 printf("\t\t\t\t\t\t\t\t\t\tEstas en MENU DE OPERACIONES\n");
-                printf("\n\tElija la:\n");
+                printf("\n\tElija la funcion:\n");
                 printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 Maximo y minimo \n");
                 scanf ("%d", &operaciones);
                 
@@ -135,7 +135,7 @@ int main()
             	
             	
                 printf("\n\tElija la funcion del programa sobre la que le interese aprender\n");
-                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n\t 5 Visualizacion de lineas en especifico \n\t 6 Creacion de una matriz y seleccion de vector \n\t 7 Maximo y minimo \n\t 8 Generacion de vectores completa por fila de matriz\n");
+                printf("\t 1 Visualizacion de datos \n\t 2 Media \n\t 3 Varianza \n\t 4 Cuasivarianza \n\t 5 Visualizacion de lineas en especifico \n\t 6 Creacion de una matriz y seleccion de vector \n\t 7 Maximo y minimo \n\t 8 Generacion de vectores completa por fila de matriz \n\t 9 Visualizacion de datos por tipo \n");
                 scanf ("%d", &ayuda);
                 
             	switch(ayuda) {
@@ -162,6 +162,9 @@ int main()
             			break;	
             		case 8:
             			printf("Generacion de vectores completa por fila de matriz: Funcion encargada de generar un vector por cada fila de la matriz dando paso a una vectorizacion completa de la matriz.\n");
+            			break;
+					case 9:
+            			printf("Visualizacion de datos por tipo: Impresión de los vectores evitando el 0 inicial de cada uno e introduciendo el titulo de cada fila del fichero como componente del vector a traves de un vector de estructuras.\n");
             			break;	
 				}
                 break;
@@ -351,8 +354,8 @@ int main()
     fclose(archivo);}
 
 
-float cuasivarianza(float vector_3[], int tamanio_3)
-{
+  float cuasivarianza(float vector_3[], int tamanio_3)
+  {
 	float suma_cuadrados=0, x=media(vector_3, tamanio_3), resultado;
 	int i=0;
 	for(i=0; i<tamanio_3; i++)
@@ -362,10 +365,10 @@ float cuasivarianza(float vector_3[], int tamanio_3)
 	resultado=suma_cuadrados/(tamanio_3-2);
 	
 	return resultado;
-}
+  }
 
-void imprimir_estructura(datos vector_estructura[])
-{
+  void imprimir_estructura(datos vector_estructura[])
+  {
 	int i=0, j=0;
 	for(i=0; i<17; i++)
 	{
@@ -375,10 +378,10 @@ void imprimir_estructura(datos vector_estructura[])
 		 	printf("%f  ", vector_estructura[i].vector[j]);
 		}
 	}
-}
+  }
 
- void leer_fichero()
-{
+  void leer_fichero()
+  {
 	int i;
 	FILE *archivo;
 	
@@ -423,10 +426,10 @@ void imprimir_estructura(datos vector_estructura[])
     fclose(archivo); 
     
      }
- }
+  }
  
-float media(float vector[], int tamanio)
-{
+  float media(float vector[], int tamanio)
+  {
 	float resultado;
 	int i=0;
 	for(i=0; i<tamanio; i++)
@@ -436,10 +439,10 @@ float media(float vector[], int tamanio)
 	resultado=resultado/(i-1);
 	
 	return resultado;
-}
+  }
 
-float varianza(float vector_2[], int tamanio_2)
-{
+  float varianza(float vector_2[], int tamanio_2)
+  {
 	float suma_cuadrados=0, x=media(vector_2, tamanio_2), resultado;
 	int i=0;
 	for(i=0; i<tamanio_2; i++)
@@ -449,25 +452,25 @@ float varianza(float vector_2[], int tamanio_2)
 	resultado=suma_cuadrados/(tamanio_2-1);
 	
 	return resultado;
-}
+  }
 
-void extraerFila(char matriz[18][25][800], int fila, float vector[25]) {
+  void extraerFila(char matriz[18][25][800], int fila, float vector[25]) {
     int columna;
     for (columna = 0; columna < 25; columna++) {
         float valor = atof(matriz[fila][columna]); // paso a float.
         vector[columna] = valor;
     }
-}
+  }
 
-void imprimirVector(float vector[25], int longitud) {
+  void imprimirVector(float vector[25], int longitud) {
     int i;
     for (i = 1; i < longitud; i++) {
         printf("%f ", vector[i]);
     }
     printf("\n");
-}
+  }
 
-void leerLineaCSV( char *nombreArchivo, int nLinea) {
+  void leerLineaCSV( char *nombreArchivo, int nLinea) {
     FILE *archivo = fopen("Def.csv", "r");
     if (archivo == NULL) {
         printf("Error al abrir el fichero.\n");
@@ -485,9 +488,9 @@ void leerLineaCSV( char *nombreArchivo, int nLinea) {
     }
 
     fclose(archivo);
-}
+  }
 
-float encontrarMaximo(float vector[], int longitud) {
+  float encontrarMaximo(float vector[], int longitud) {
     float maximo = vector[0];  // Suponemos que el primer elemento es el máximo inicialmente
     
     int i;
@@ -498,9 +501,9 @@ float encontrarMaximo(float vector[], int longitud) {
     }
     
     return maximo;
-}
+  }
 
-float encontrarMinimo(float vector[], int longitud) {
+  float encontrarMinimo(float vector[], int longitud) {
     float minimo = vector[0];  // Suponemos que el primer elemento es el mínimo inicialmente
     int i;
     
@@ -511,10 +514,10 @@ float encontrarMinimo(float vector[], int longitud) {
     }
     
     return minimo;
-}
+  }
 
 
-void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y el vector individual pero con esta conseguimos una impresion de todos los vectores
+  void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y el vector individual pero con esta conseguimos una impresion de todos los vectores
     int numeroColumnas = 25;
     int numeroFilas = 18;
     char matrizDatos[18][25][800];
@@ -672,9 +675,9 @@ void MatrizArchivoV() {  // esta funcion sigue las mismas bases que la matriz y 
         imprimirVector(vector, 25);
     }
     fclose(archivo);
-}
+  }
 
-int Validacion(int min, int max) {
+  int Validacion(int min, int max) {
     int opcion;
     printf("\nIntroduzca una opcion: ");
     scanf("%d", &opcion);
@@ -683,4 +686,4 @@ int Validacion(int min, int max) {
         scanf("%d", &opcion);
     }
     return opcion;
-}
+  }

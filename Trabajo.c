@@ -69,7 +69,7 @@ void escribir_en_archivo(const char* nombre_archivo, const char* contenido);
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
                 printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico \n\t 3 Creacion de una matriz y seleccion de vector \n\t 4 Visualizacion de datos por tipo \n\t 5 Generacion de vectores completa por fila de matriz \n\t");
-                printf("\t 6 ordenar un vector escogido de mayor a menor \n\t 7.calcular el incremento en porcentaje de una fila escogida\n\t");
+                printf(" 6 ordenar un vector escogido de mayor a menor \n\t 7.calcular el incremento en porcentaje de una fila escogida\n\t");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:

@@ -69,7 +69,7 @@ void escribir_en_archivo(const char* nombre_archivo, const char* contenido);
             	printf("\t\t\t\t\t\t\t\t\t\tEstas en: MENU DE VISUALIZACION\n");
                 printf("\n\tElija la funcion:\n");
                 printf("\t 1 Visualizacion del csv. \n\t 2 Visualizacion de lineas en especifico \n\t 3 Creacion de una matriz y seleccion de vector \n\t 4 Visualizacion de datos por tipo \n\t 5 Generacion de vectores completa por fila de matriz \n\t");
-                printf(" 6 ordenar un vector escogido de mayor a menor \n\t 7.calcular el incremento en porcentaje de una fila escogida\n\t");
+                printf(" 6 ordenar un vector escogido de mayor a menor \n\t");
                 scanf ("%d", &visual);
                 switch(visual) {
             		case 1:
@@ -103,22 +103,7 @@ void escribir_en_archivo(const char* nombre_archivo, const char* contenido);
     					printf("vector ordenado de mayor a menor:\n");
     					imprimirVector(vector, 25);
     					break;
-    				case 7:
-    					printf("incremento en porcentaje del vector escogido");
-    					MatrizArchivo( vector);
-    					
-    					float incremento_porcentaje =  incremento_en_porcentaje( vector, 25);
-    					
-    					if(incremento_porcentaje < 0)
-    					{
-    						incremento_porcentaje = valor_absoluto(incremento_porcentaje);
-    						printf("el valor del vector escogido ha disminuido un %f por ciento ", incremento_porcentaje);
-						}
-    					else
-    					{
-    						printf("el valor del vector escogido ha aumentado un %f por ciento", incremento_porcentaje);
-						}
-						break;
+    				
     					
             		default:
                         printf("Elija una de las opciones vigentes\n");
@@ -128,7 +113,7 @@ void escribir_en_archivo(const char* nombre_archivo, const char* contenido);
             case 2:
                 printf("\t\t\t\t\t\t\t\t\t\tEstas en MENU DE OPERACIONES\n");
                 printf("\n\tElija la funcion:\n");
-                printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 Maximo y minimo \n 5 Mediana\n");
+                printf("\t 1 Media \n\t 2 Varianza \n\t 3 Cuasivarianza \n\t 4 Maximo y minimo \n\t 5 Mediana \n\t 6.calcular el incremento en porcentaje de una fila escogida\n\t");
                 scanf ("%d", &operaciones);
                 
 				switch(operaciones) {
@@ -171,6 +156,22 @@ void escribir_en_archivo(const char* nombre_archivo, const char* contenido);
             			float mediana = encontrar_mediana(vector, 25);
             			printf("la mediana del vector escogido es: %.2f\n", mediana);
             			break;
+            		case 6:
+    					printf("Incremento en porcentaje del vector escogido");
+    					MatrizArchivo( vector);
+    					
+    					float incremento_porcentaje =  incremento_en_porcentaje( vector, 25);
+    					
+    					if(incremento_porcentaje < 0)
+    					{
+    						incremento_porcentaje = valor_absoluto(incremento_porcentaje);
+    						printf("el valor del vector escogido ha disminuido un %f por ciento ", incremento_porcentaje);
+						}
+    					else
+    					{
+    						printf("el valor del vector escogido ha aumentado un %f por ciento", incremento_porcentaje);
+						}
+						break;
             		default:
                         printf("Elija una de las opciones vigentes\n");
                         break;

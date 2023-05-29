@@ -59,7 +59,7 @@ int main()
         printf("\t4. Informacion y ayuda referente a las funciones del programa\n");
         printf("\t5. escrbir una reseña\n");
 
-        seleccion = Validacion(1, 4);
+        seleccion = Validacion(1, 5);
 
       switch(seleccion) {
             case 1:
@@ -817,9 +817,12 @@ void ordenar_mayor_a_menor(float vector[], int longitud)
     int i, j;
     float temp;
 
-    for (i = 1; i < longitud ; i++) {
-        for (j = 1; j < longitud - i ; j++) {
-            if (vector[j] < vector[j + 1]) {
+    for (i = 1; i < longitud ; i++) 
+	{
+        for (j = 1; j < longitud - i ; j++) 
+		{
+            if (vector[j] < vector[j + 1]) 
+			{
                 temp = vector[j];
                 vector[j] = vector[j + 1];
                 vector[j + 1] = temp;

@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void incremento_en_porcentaje(const char tabla[][25][50], int num_filas);
+
 int main()
 {
     int fila=0;
-    char tabla[17][25][800];
+    char tabla[17][25][50];
     FILE *plectura;
     FILE *pescritura;
     plectura = fopen("Def.csv", "r");
     int i = 0, j = 0, k = 0, p=0;
-    char *archivo;
+    char *archivo[50];
     if (plectura == NULL)
     {
         printf("Error al abrir el fichero de lectura");
@@ -19,7 +21,7 @@ int main()
     {
         while(fscanf(plectura, "%s", archivo) != EOF) 
         {
-            if(archivo == '\n')
+            if(*archivo == '\n')
             {
             	fila++;
             	j=0;
@@ -30,7 +32,7 @@ int main()
 			}
 			else if(fila>5)
 			{
-				fscanf(plectura, " %[^\n]", &tabla[i]);
+				fscanf(plectura, " %[^\n]", &tabla[i][0]);
 				for(j=0; j<25; j++)
 				{
 					fscanf(plectura, "%[^,]", &tabla[i][j]);
@@ -46,6 +48,25 @@ int main()
 		}
     }
     fclose(plectura);
-
+    
+    incremento_en_porcentaje(tabla, 17);
+    
+    
+    
+    
 return 0;
+}
+
+void incremento_en_porcentaje(const char tabla[][25][50], int num_filas)
+{
+    for (int i = 0; i < num_filas; i++)
+	{
+        const char* palabra = tabla[i][0];
+        float valorInicial = atof(&tabla[i][1][0]);
+        float valorFinal = atof(&tabla[i][24][0]);
+
+        float incremento_Porcentual = ((valorFinal - valorInicial) / valorInicial) * 100;
+
+        printf("Incremento en la línea %d (%s): %.2f%%\n", i + 1, palabra, incremento_Porcentual);
+    }
 }

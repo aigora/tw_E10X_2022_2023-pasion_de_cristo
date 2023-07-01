@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void incremento_en_porcentaje(const char tabla[][25][50], int num_filas);
+void incremento_en_porcentaje(const char tabla[][25][50], int num_filas, FILE *pescritura);
 
 int main()
 {
     int fila=0;
-    char tabla[17][25][50];
+    const char tabla[17][25][50];
     FILE *plectura;
     FILE *pescritura;
     plectura = fopen("Def.csv", "r");
@@ -15,7 +15,7 @@ int main()
     if (plectura == NULL)
     {
         printf("Error al abrir el fichero de lectura");
-        return -1;
+        return 0;
     }
     else
     {
@@ -46,20 +46,35 @@ int main()
         	    printf("%s, ", tabla[k][p]);
 			}
 		}
+		fclose(plectura);
+        
+        pescritura = fopen("incremento_tablas", "w");
+        if (pescritura == NULL)
+        {
+            printf("Error al abrir el fichero de escritura");
+            return 0;
+        }
+        else
+        {
+        	for(k=0; k<17;k++)
+            {
+            	fprintf(pescritura, "\n");
+        	    for(p=0; p<25; p++)
+        	       {
+        	          fprintf(pescritura, "%s, ", tabla[k][p]);
+			       }
+		    }
+		    incremento_en_porcentaje(tabla, 17, pescritura);
+        }
     }
-    fclose(plectura);
-    
-    incremento_en_porcentaje(tabla, 17);
-    
-    
-    
     
 return 0;
 }
 
-void incremento_en_porcentaje(const char tabla[][25][50], int num_filas)
+void incremento_en_porcentaje(const char tabla[][25][50], int num_filas, FILE *pescritura)
 {
-    for (int i = 0; i < num_filas; i++)
+	int i;
+    for (i=0; i < num_filas; i++)
 	{
         const char* palabra = tabla[i][0];
         float valorInicial = atof(&tabla[i][1][0]);
@@ -68,5 +83,8 @@ void incremento_en_porcentaje(const char tabla[][25][50], int num_filas)
         float incremento_Porcentual = ((valorFinal - valorInicial) / valorInicial) * 100;
 
         printf("Incremento en la línea %d (%s): %.2f%%\n", i + 1, palabra, incremento_Porcentual);
+        fprintf(pescritura, "Incremento en la línea %d (%s): %.2f%%\n", i + 1, palabra, incremento_Porcentual);
     }
 }
+
+
